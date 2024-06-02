@@ -1,0 +1,20 @@
+{
+  "$schema": ".template.schema.json",
+  "scopes": [
+    {
+      "scope": "rater",
+      "types": [
+        "male",
+        "female",
+        "prompt",
+        "result",
+        "error.timeout",
+        "error.too_large",
+        "error.invalid_input",
+        "error.no_face_found",
+        "error.no_image_found",
+        "error.missing_config"
+      ]
+    }
+  ]
+}

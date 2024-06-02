@@ -1,0 +1,67 @@
+{
+  "title": "Lang Schema",
+  "description": "Schema for lang file",
+  "type": "object",
+  "minProperties": 2,
+  "maxProperties": 2,
+  "properties": {
+    "rater": {
+      "title": "Rater",
+      "description": "Scope 'rater' of lang item",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "error.no_image_found": {
+          "title": "error.no_image_found",
+          "description": "value of lang item type 'error.no_image_found'",
+          "type": "string"
+        },
+        "error.timeout": {
+          "title": "error.timeout",
+          "description": "value of lang item type 'error.timeout'",
+          "type": "string"
+        },
+        "error.invalid_input": {
+          "title": "error.invalid_input",
+          "description": "value of lang item type 'error.invalid_input'",
+          "type": "string"
+        },
+        "error.no_face_found": {
+          "title": "error.no_face_found",
+          "description": "value of lang item type 'error.no_face_found'",
+          "type": "string"
+        },
+        "error.too_large": {
+          "title": "error.too_large",
+          "description": "value of lang item type 'error.too_large'",
+          "type": "string"
+        },
+        "error.missing_config": {
+          "title": "error.missing_config",
+          "description": "value of lang item type 'error.missing_config'",
+          "type": "string"
+        },
+        "prompt": {
+          "title": "prompt",
+          "description": "value of lang item type 'prompt'",
+          "type": "string"
+        },
+        "result": {
+          "title": "result",
+          "description": "value of lang item type 'result'",
+          "type": "string"
+        },
+        "male": {
+          "title": "male",
+          "description": "value of lang item type 'male'",
+          "type": "string"
+        },
+        "female": {
+          "title": "female",
+          "description": "value of lang item type 'female'",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

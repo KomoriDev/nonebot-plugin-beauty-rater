@@ -1,0 +1,15 @@
+{
+  "$schema": ".lang.schema.json",
+  "rater": {
+    "male": "男",
+    "female": "女",
+    "prompt": "请发送图片",
+    "result": "人脸-{count}:\n性别：{gender}\n颜值评分：{score}",
+    "error.timeout": "等待超时",
+    "error.too_large": "图片尺寸过大！",
+    "error.invalid_input": "无效输入",
+    "error.no_image_found": "没有找到图片！",
+    "error.no_face_found": "未从图片中识别到人脸！",
+    "error.missing_config": "未配置 api_key 或 secret_key"
+  }
+}

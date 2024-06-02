@@ -1,0 +1,15 @@
+{
+  "$schema": ".lang.schema.json",
+  "rater": {
+    "male": "male",
+    "female": "female",
+    "prompt": "Please send pictures",
+    "result": "Face-{count}:\nGender: {gender}\nScore: {score}",
+    "error.timeout": "Timeout",
+    "error.too_large": "Image size is too large",
+    "error.invalid_input": "Invalid input",
+    "error.no_image_found": "No images found!",
+    "error.no_face_found": "Picture not has face",
+    "error.missing_config": "No api_key or secret_key configured"
+  }
+}
