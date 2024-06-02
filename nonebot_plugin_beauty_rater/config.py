@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from pydantic import BaseModel
 from nonebot import get_plugin_config
 
@@ -15,5 +16,6 @@ class ScopedConfig(BaseModel):
 class Config(BaseModel):
     rate: ScopedConfig = ScopedConfig()
     """Beauty Rater Config"""
+
 
 config = get_plugin_config(Config).rate

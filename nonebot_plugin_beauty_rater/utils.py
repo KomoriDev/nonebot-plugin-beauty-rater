@@ -1,9 +1,10 @@
-import httpx
+from math import pi, cos, sin
 
-from math import sin, cos, pi
+import httpx
 from PIL import Image, ImageDraw, ImageFont
 
 from .config import font_path
+
 
 def ra_sin(angle):
     return round(sin(angle * pi / 180), 2)

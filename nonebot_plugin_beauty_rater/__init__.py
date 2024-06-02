@@ -1,18 +1,18 @@
-import httpx
 import base64
-
 from io import BytesIO
+
+import httpx
 from nonebot import require
 from nonebot.plugin import PluginMetadata, inherit_supported_adapters
 
 require("nonebot_plugin_waiter")
 require("nonebot_plugin_alconna")
 from nonebot_plugin_waiter import waiter
-from nonebot_plugin_alconna import Command, Image, Match, load_builtin_plugins
 from nonebot_plugin_alconna.uniseg import UniMsg, UniMessage
+from nonebot_plugin_alconna import Image, Match, Command, load_builtin_plugins
 
-from .i18n import lang, Lang
-from .config import config, Config
+from .i18n import Lang, lang
+from .config import Config, config
 from .utils import FaceRecognition
 
 api_key = config.api_key
@@ -86,7 +86,11 @@ async def _(image: Match[Image]):
     faces_beauty = []
 
     for face in result["result"]["face_list"]:
-        faces_gender.append(lang.require("rater", "male") if face["gender"]["type"] == "male" else lang.require("rater", "female"))  # noqa: E501
+        faces_gender.append(
+            lang.require("rater", "male")
+            if face["gender"]["type"] == "male"
+            else lang.require("rater", "female")
+        )
         faces_pos.append(face["location"])
         faces_beauty.append(face["beauty"])
 
@@ -97,7 +101,7 @@ async def _(image: Match[Image]):
 
     msg = "\n".join(
         [
-            Lang.rater.result(count=i+1, gender=gender, score=f"{beauty}/100")
+            Lang.rater.result(count=i + 1, gender=gender, score=f"{beauty}/100")
             for i, (gender, beauty) in enumerate(zip(faces_gender, faces_beauty))
         ]
     )
