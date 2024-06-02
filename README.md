@@ -46,6 +46,8 @@ plugins = ["nonebot_plugin_beauty_rater"]
 
 在项目的配置文件中添加下表中的可选配置
 
+> `api_key` 和 `secret_key` 可以从 [这里](https://cloud.baidu.com/product/face) 获取
+
 | 配置项 | 必填 | 默认值 |
 | :---: | :---: | :---: |
 | rate__api_key | 是 | 无 |
