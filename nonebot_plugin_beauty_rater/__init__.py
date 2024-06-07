@@ -3,6 +3,7 @@ from io import BytesIO
 
 import httpx
 from nonebot import require
+from nonebot.log import logger
 from nonebot.plugin import PluginMetadata, inherit_supported_adapters
 
 require("nonebot_plugin_waiter")
@@ -19,7 +20,7 @@ api_key = config.api_key
 secret_key = config.secret_key
 
 if api_key == "" or secret_key == "":
-    raise Exception(lang.require("rater", "error.missing_config"))
+    logger.warning(lang.require("rater", "error.missing_config"))
 
 
 __plugin_meta__ = PluginMetadata(
@@ -43,6 +44,10 @@ rate.shortcut("颜值打分", {"command": "rate", "fuzzy": True, "prefix": True}
 
 @rate.handle()
 async def _(image: Match[Image]):
+    if api_key == "" or secret_key == "":
+        logger.error(lang.require("rater", "error.missing_config"))
+        return
+
     if image.available:
         img_url = image.result.url
         if img_url is None:
