@@ -19,6 +19,10 @@ _✨ NoneBot2 颜值打分插件 ✨_
 <a href="https://pdm.fming.dev">
   <img src="https://img.shields.io/badge/pdm-managed-blueviolet" alt="pdm-managed">
 </a>
+<a href="https://pdm.fming.dev">
+  <img src="https://img.shields.io/badge/Alconna-resolved-2564C2" alt="pdm-managed">
+</a>
+
 
 </div>
 
