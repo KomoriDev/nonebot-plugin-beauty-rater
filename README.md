@@ -23,7 +23,6 @@ _✨ NoneBot2 颜值打分插件 ✨_
   <img src="https://img.shields.io/badge/Alconna-resolved-2564C2" alt="alc-resolved">
 </a>
 
-
 </div>
 
 ## 📖 介绍
