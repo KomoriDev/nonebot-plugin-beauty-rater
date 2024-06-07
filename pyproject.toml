@@ -9,7 +9,7 @@ authors = [
 ]
 dependencies = [
     "nonebot2[fastapi]>=2.3.0",
-    "nonebot-plugin-alconna>=0.46.3",
+    "nonebot-plugin-alconna>=0.46.4",
     "nonebot-plugin-waiter>=0.6.1",
     "pillow>=10.3.0",
 ]
