@@ -61,7 +61,11 @@ plugins = ["nonebot_plugin_beauty_rater"]
 
 ### 插件本体
 
-指令名：`rate` `颜值评分` `颜值打分`
+```bash
+/rate [图片]
+```
+
+指令别名：`颜值评分` `颜值打分`
 
 ### i18n
 
