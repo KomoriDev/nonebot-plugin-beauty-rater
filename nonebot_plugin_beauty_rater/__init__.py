@@ -18,6 +18,8 @@ from .utils import FaceRecognition
 
 api_key = config.api_key
 secret_key = config.secret_key
+at_sender = config.at_sender
+reply_to = config.reply_to
 
 if api_key == "" or secret_key == "":
     logger.warning(lang.require("rater", "error.missing_config"))
@@ -51,11 +53,11 @@ async def _(image: Match[Image]):
     if image.available:
         img_url = image.result.url
         if img_url is None:
-            await UniMessage.i18n(Lang.rater.error_no_image_found).send(at_sender=True)
+            await UniMessage.i18n(Lang.rater.error_no_image_found).send(at_sender=at_sender, reply_to=reply_to)
             return
 
     else:
-        await UniMessage.i18n(Lang.rater.prompt).send(at_sender=True)
+        await UniMessage.i18n(Lang.rater.prompt).send(at_sender=at_sender, reply_to=reply_to)
 
         @waiter(waits=["message"], keep_session=True)
         async def receive(msg: UniMsg):
@@ -63,10 +65,10 @@ async def _(image: Match[Image]):
 
         resp = await receive.wait(timeout=30)
         if resp is None:
-            await UniMessage.i18n(Lang.rater.error_timeout).send(at_sender=True)
+            await UniMessage.i18n(Lang.rater.error_timeout).send(at_sender=at_sender, reply_to=reply_to)
             return
         if not resp.only(Image):
-            await UniMessage.i18n(Lang.rater.error_invalid_input).send(at_sender=True)
+            await UniMessage.i18n(Lang.rater.error_invalid_input).send(at_sender=at_sender, reply_to=reply_to)
             return
 
         imgs = resp[Image]
@@ -82,9 +84,9 @@ async def _(image: Match[Image]):
     result = await faces.face_beauty()
 
     if result["error_msg"] == "pic not has face":
-        await UniMessage.i18n(Lang.rater.error_no_face_found).send(at_sender=True)
+        await UniMessage.i18n(Lang.rater.error_no_face_found).send(at_sender=at_sender, reply_to=reply_to)
     elif result["error_msg"] == "image size is too large":
-        await UniMessage.i18n(Lang.rater.error_too_large).send(at_sender=True)
+        await UniMessage.i18n(Lang.rater.error_too_large).send(at_sender=at_sender, reply_to=reply_to)
 
     faces_gender = []
     faces_pos = []
@@ -110,7 +112,7 @@ async def _(image: Match[Image]):
             for i, (gender, beauty) in enumerate(zip(faces_gender, faces_beauty))
         ]
     )
-    await UniMessage(msg).send(at_sender=True)
+    await UniMessage(msg).send(at_sender=at_sender, reply_to=reply_to)
 
     pic_bytes_stream.close()
     buf.close()

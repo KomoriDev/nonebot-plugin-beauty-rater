@@ -8,9 +8,14 @@ font_path: Path = Path(__file__).parent / "resources" / "fonts" / "simyou.ttf"
 
 class ScopedConfig(BaseModel):
 
+    # 基础配置
     api_key: str = ""
     secret_key: str = ""
     timeout: int = 30
+
+    # 消息发送配置
+    at_sender: bool = True
+    reply_to: bool = True
 
 
 class Config(BaseModel):

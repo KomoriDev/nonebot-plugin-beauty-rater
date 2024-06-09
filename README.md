@@ -56,6 +56,8 @@ plugins = ["nonebot_plugin_beauty_rater"]
 | rate__api_key | 是 | 无 |
 | rate__secret_key | 是 | 无 |
 | rate__timeout | 否 | 30 |
+| rate__at_sender | 否 | True |
+| rate__reply_to | 否 | True |
 
 ## 🎉 使用
 
