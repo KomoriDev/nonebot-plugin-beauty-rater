@@ -56,8 +56,6 @@ plugins = ["nonebot_plugin_beauty_rater"]
 | rate__api_key | 是 | 无 |
 | rate__secret_key | 是 | 无 |
 | rate__timeout | 否 | 30 |
-| rate__at_sender | 否 | True |
-| rate__reply_to | 否 | True |
 
 ## 🎉 使用
 
@@ -88,7 +86,15 @@ plugins = ["nonebot_plugin_beauty_rater"]
 
 ### 效果图
 
-~~理论上，这里应该有几张效果图~~
+<p align="center">
+  <a href="https://github.com/KomoriDev/nonebot-plugin-beauty-rater" target="__blank">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./docs/preview-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="./docs/preview-light.png">
+      <img src="./docs/preview-light.png" alt="Beauty Rater - Preview" width="100%" />
+    </picture>
+  </a>
+</p>
 
 ## 许可证
 
