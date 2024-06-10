@@ -13,10 +13,6 @@ class ScopedConfig(BaseModel):
     secret_key: str = ""
     timeout: int = 30
 
-    # 消息发送配置
-    at_sender: bool = True
-    reply_to: bool = True
-
 
 class Config(BaseModel):
     rate: ScopedConfig = ScopedConfig()
