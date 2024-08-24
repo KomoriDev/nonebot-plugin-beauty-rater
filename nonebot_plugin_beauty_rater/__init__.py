@@ -11,6 +11,7 @@ require("nonebot_plugin_alconna")
 from nonebot_plugin_waiter import waiter
 from nonebot_plugin_alconna.uniseg import MsgId, UniMsg, UniMessage
 from nonebot_plugin_alconna import Image, Match, Command, load_builtin_plugins
+from nonebot_plugin_alconna.builtins.extensions.reply import ReplyMergeExtension
 
 from .i18n import Lang, lang
 from .config import Config, config
@@ -37,7 +38,9 @@ __plugin_meta__ = PluginMetadata(
 load_builtin_plugins("lang")
 
 
-rate = Command("rate [image:Image]").build(use_cmd_start=True)
+rate = Command("rate [image:Image]").build(
+    use_cmd_start=True, extensions=[ReplyMergeExtension()]
+)
 rate.shortcut("颜值评分", {"command": "rate", "fuzzy": True, "prefix": True})
 rate.shortcut("颜值打分", {"command": "rate", "fuzzy": True, "prefix": True})
 
@@ -51,11 +54,9 @@ async def _(image: Match[Image], msg_id: MsgId):
     if image.available:
         img_url = image.result.url
         if img_url is None:
-            await UniMessage.i18n(Lang.rater.error_no_image_found).send(
+            await UniMessage.i18n(Lang.rater.error_no_image_found).finish(
                 at_sender=True, reply_to=msg_id
             )
-            return
-
     else:
         await UniMessage.i18n(Lang.rater.prompt).send(at_sender=True)
 
@@ -66,16 +67,14 @@ async def _(image: Match[Image], msg_id: MsgId):
         resp = await receive.wait(timeout=30)
 
         if resp is None:
-            await UniMessage.i18n(Lang.rater.error_timeout).send(at_sender=True)
-            return
+            await UniMessage.i18n(Lang.rater.error_timeout).finish(at_sender=True)
 
         msg, msg_id = resp  # type: ignore
 
         if not msg.only(Image):
-            await UniMessage.i18n(Lang.rater.error_invalid_input).send(
+            await UniMessage.i18n(Lang.rater.error_invalid_input).finish(
                 at_sender=True, reply_to=msg_id
             )
-            return
 
         imgs = msg[Image]
         urls = [i.url for i in imgs if i.url]
@@ -89,12 +88,8 @@ async def _(image: Match[Image], msg_id: MsgId):
     faces = FaceRecognition(img, api_key, secret_key)
     result = await faces.face_beauty()
 
-    if result["error_msg"] == "pic not has face":
-        await UniMessage.i18n(Lang.rater.error_no_face_found).send(
-            at_sender=True, reply_to=msg_id
-        )
-    elif result["error_msg"] == "image size is too large":
-        await UniMessage.i18n(Lang.rater.error_too_large).send(
+    if result["error_code"] != 0:
+        await UniMessage.text(f"颜值评分失败：{result['error_msg']}").finish(
             at_sender=True, reply_to=msg_id
         )
 
